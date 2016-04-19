@@ -44,5 +44,13 @@
       ]
     }
   ],
+  "oauth2": {
+    "client_id": "fake-id",
+    "scopes": [
+      "openid",
+      "email",
+      "profile"
+    ]
+  },
   "key": "test-key"
 }

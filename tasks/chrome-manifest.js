@@ -14,17 +14,18 @@ module.exports = function (grunt) {
       breadcrumbs = [];
     }
     for (var key in src) {
+      breadcrumbs.push(key);
       if (!(key in dest) || (typeof src[key] !== 'object')) {
+        grunt.verbose.write(breadcrumbs.join('.') + ' = ' + src[key]);
         dest[key] = src[key];
       } else {
         if (typeof dest[key] !== 'object') {
           grunt.fail.warn('attempt to overwrite ' + (typeof dest[key]) + ' with object: ' + breadcrumbs.join('.'));
         } else {
-          breadcrumbs.push(key);
           overwrite(dest[key], src[key], breadcrumbs);
-          breadcrumbs.pop();
         }
       }
+      breadcrumbs.pop();
     }
   }
 

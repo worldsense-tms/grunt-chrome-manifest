@@ -226,10 +226,8 @@ describe('Chrome manifest', function () {
       icons: {
         '128': 'images/prod-128.png'
       },
-      'deep': {
-        'branch': {
-          'leaf': 'yes'
-        }
+      'oauth2': {
+        'client_id': 'test-id'
       },
       arr: ['item 1', 'item 2', 'item 3']
     };
@@ -242,6 +240,9 @@ describe('Chrome manifest', function () {
     var manifest = grunt.file.readJSON(path.join(target.dest, 'manifest.json'));
     assertContainsAll(manifest, target.options.overwrite);
     assert.equal('images/icon-32.png', manifest.icons['32']);
+    assert.equal('images/prod-128.png', manifest.icons['128']);
+    assert.equal('test-id', manifest.oauth2.client_id);
+    assert.equal(3, manifest.oauth2.scopes.length);
   });
 
   it('should remove fields', function () {
